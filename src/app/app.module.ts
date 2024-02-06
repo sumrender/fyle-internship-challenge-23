@@ -5,8 +5,9 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GithubDataComponent } from './pages/github-data/github-data.component';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchComponent } from './shared/search/search.component';
 import { FormsModule } from '@angular/forms';
+import { SearchComponent } from './components/search/search.component';
+import { RepoCardComponent } from './components/repo-card/repo-card.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, GithubDataComponent, SearchComponent],
+  declarations: [
+    AppComponent,
+    GithubDataComponent,
+    SearchComponent,
+    RepoCardComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
