@@ -92,7 +92,7 @@ describe('GithubDataComponent', () => {
     tick();
 
     expect(component.errorMessage).toContain(
-      'Something went wrong! Please try again after some time.'
+      `Something went wrong! Please check your internet connection or again after some time.`
     );
     expect(apiService.getRepositories).not.toHaveBeenCalled();
   }));
@@ -156,19 +156,15 @@ describe('GithubDataComponent', () => {
     it('should handle error in fetchUserRepositories', fakeAsync(() => {
       apiService.getUser.and.returnValue(of(DUMMY_USER));
       apiService.getRepositories.and.returnValue(throwError('Some error'));
-  
+
       component.fetchUserRepositories();
-  
+
       tick();
-  
+
       expect(component.errorMessage).toContain(
         'Error fetching repositories. Please try again after some time.'
       );
-      expect(apiService.getRepositories).toHaveBeenCalledWith(
-        'testUser',
-        1,
-        9
-      );
+      expect(apiService.getRepositories).toHaveBeenCalledWith('testUser', 1, 9);
     }));
   });
 });

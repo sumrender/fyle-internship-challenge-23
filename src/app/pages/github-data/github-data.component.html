@@ -3,7 +3,7 @@
   class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8"
 >
   <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-    <div *ngIf="userProfile; else loading" class="text-center">
+    <div *ngIf="userProfile; else userLoader" class="text-center">
       <img
         *ngIf="userProfile.avatar_url"
         src="{{ userProfile.avatar_url }}"
@@ -27,13 +27,9 @@
         </div>
       </div>
     </div>
-    <!-- Loading -->
-    <ng-template #loading>
-      <p class="text-gray-600 text-center">Loading...</p>
-    </ng-template>
   </div>
 
-  <div *ngIf="userRepositories.length > 0" class="mt-8">
+  <div *ngIf="userProfile && !reposLoading; else reposLoader" class="mt-8">
     <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6 text-gray-800">
       Repositories
     </h2>
@@ -88,5 +84,35 @@
 <ng-template #error>
   <div class="flex items-center justify-center h-[50vh] py-4">
     <p class="text-xl text-red-500">{{ errorMessage }}</p>
+  </div>
+</ng-template>
+
+<ng-template #userLoader>
+  <div class="text-center">
+    <div class="skeleton-loader circle"></div>
+    <div class="skeleton-loader rectangle"></div>
+    <div class="skeleton-loader rectangle"></div>
+    <div class="skeleton-loader rectangle"></div>
+    <div class="skeleton-loader rectangle"></div>
+  </div>
+</ng-template>
+
+<ng-template #reposLoader>
+  <div class="mt-8">
+    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6 text-gray-800">
+      Repositories
+    </h2>
+    <div class="flex flex-wrap justify-center gap-4">
+      <div
+        *ngFor="let repo of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
+        class="flex-shrink-0 h-[250px] w-full sm:w-1/2 md:w-1/3 lg:w-1/4 m-2 border rounded-md p-4 flex flex-col items-center justify-center"
+      >
+        <div class="skeleton-loader rectangle"></div>
+        <div class="skeleton-loader rectangle"></div>
+        <div class="skeleton-loader rectangle"></div>
+        <div class="skeleton-loader rectangle"></div>
+        <div class="skeleton-loader rectangle"></div>
+      </div>
+    </div>
   </div>
 </ng-template>

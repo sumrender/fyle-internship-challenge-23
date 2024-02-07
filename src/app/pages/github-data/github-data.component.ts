@@ -1,5 +1,3 @@
-// github-data.component.ts
-
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
@@ -9,8 +7,10 @@ import { IUser } from 'src/models/user.model';
 @Component({
   selector: 'app-github-data',
   templateUrl: './github-data.component.html',
+  styleUrls: ['./github-data.component.scss'],
 })
 export class GithubDataComponent {
+  reposLoading = false;
   username: string = '';
   userProfile: IUser | undefined;
   userRepositories: IRepository[] = [];
@@ -42,7 +42,7 @@ export class GithubDataComponent {
         if (error.status === 404) {
           this.errorMessage = `User '${this.username}' not found.`;
         } else {
-          this.errorMessage = `Something went wrong! Please try again after some time.`;
+          this.errorMessage = `Something went wrong! Please check your internet connection or again after some time.`;
         }
         this.userRepositories = [];
       },
@@ -51,19 +51,23 @@ export class GithubDataComponent {
 
   fetchUserRepositories() {
     if (this.userProfile) {
+      this.reposLoading = true;
+
       let numPages = Math.ceil(
         this.userProfile.public_repos / this.itemsPerPage
       );
       this.totalPages = numPages == 0 ? 1 : numPages;
       const currPage = this.itemsChange ? 1 : this.currentPage;
-
+      
       this.apiService
         .getRepositories(this.username, currPage, this.itemsPerPage)
         .subscribe({
           next: (repos) => {
             this.userRepositories = repos;
+            this.reposLoading = false;
           },
           error: (error) => {
+            this.reposLoading = false;
             console.error('Error fetching user repositories:', error);
             this.errorMessage = `Error fetching repositories. Please try again after some time.`;
           },

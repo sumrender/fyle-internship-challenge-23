@@ -11,9 +11,6 @@ import { IRepository } from 'src/models/repository.model';
 import { DUMMY_USER } from 'src/dummy-data/dummy-user';
 import { DUMMY_REPOS } from 'src/dummy-data/dummy-repos';
 
-// rate limit testing
-// network error testing
-
 describe('ApiService', () => {
   let service: ApiService;
   let cacheService: CacheService;
