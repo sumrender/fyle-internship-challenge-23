@@ -2,7 +2,6 @@
   *ngIf="!errorMessage; else error"
   class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8"
 >
-  <!-- User Profile -->
   <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-lg">
     <div *ngIf="userProfile; else loading" class="text-center">
       <img
@@ -87,7 +86,7 @@
 </div>
 
 <ng-template #error>
-  <div class="flex h-1/2 text-center py-4">
+  <div class="flex items-center justify-center h-[50vh] py-4">
     <p class="text-xl text-red-500">{{ errorMessage }}</p>
   </div>
 </ng-template>

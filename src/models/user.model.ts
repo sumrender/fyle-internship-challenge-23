@@ -17,12 +17,12 @@ export interface IUser {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-  name: string;
+  name: string | null;
   company: string | null;
   blog: string;
   location: string | null;
   email: string | null;
-  hireable: boolean;
+  hireable: boolean | null;
   bio: string | null;
   twitter_username: string | null;
   public_repos: number;

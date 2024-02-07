@@ -43,7 +43,7 @@ export interface IRepository {
   git_refs_url: string;
   trees_url: string;
   statuses_url: string;
-  languages_url: string;
+  languages_url: string | null;
   stargazers_url: string;
   contributors_url: string;
   subscribers_url: string;
@@ -75,7 +75,7 @@ export interface IRepository {
   size: number;
   stargazers_count: number;
   watchers_count: number;
-  language: string;
+  language: string | null;
   has_issues: boolean;
   has_projects: boolean;
   has_downloads: boolean;
@@ -87,7 +87,7 @@ export interface IRepository {
   archived: boolean;
   disabled: boolean;
   open_issues_count: number;
-  license: string | null;
+  license: object | null;
   allow_forking: boolean;
   is_template: boolean;
   web_commit_signoff_required: boolean;

@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from './services/api.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {}
-// change shared name to components
-// remove html comments also
+export class AppComponent {
+  title = 'fyle-frontend-challenge'
+}
